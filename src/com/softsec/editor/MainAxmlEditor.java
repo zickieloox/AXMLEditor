@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 
 import com.softsec.editor.decode.AXMLDoc;
 
-public class Main {
-	public static void change(String inputFile, String outputFile, String newPackageName, String newAppLabel) {
+public class MainAxmlEditor {
+	public static boolean change(String inputFile, String outputFile, String newPackageName, String newAppLabel) {
 		try{
 			AXMLDoc doc = new AXMLDoc();
 			doc.parse(new FileInputStream(inputFile));
@@ -16,9 +16,10 @@ public class Main {
 			editor.commit(newPackageName, newAppLabel);
 			doc.print();
 			doc.build(new FileOutputStream(outputFile));
-
+			return true;
 		}catch(Exception e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 
